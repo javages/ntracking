@@ -10,7 +10,7 @@ fi
 
 # Copy assets to the installation directory
 for file in *; do
-    cp -v  $file $install_dir;
+    cp -rv  $file $install_dir;    #use the -r recurxive flag to copy the venv dir as well
 done
 
 #Install venv
