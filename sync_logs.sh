@@ -38,7 +38,7 @@ mkdir -p "$DEST_BASE_DIR/system_22"
 
 # for local machin oracle
 mkdir -p "$DEST_BASE_DIR/server"
-
+sudo chmod -R 757 "$DEST_BASE_DIR"
 echo "Subdirectories created."
 
 # Change directory to where the log files are located
