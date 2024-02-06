@@ -45,14 +45,14 @@ delete_logs_in_dir() {
 delete_logs_in_dir "$BASE_DIR"
 
 # Check if logs directory exists and then process each subdirectory
-if [ -d "$BASE_DIR/$LOGS_SUBDIR" ]; then
-    for subdir in "$BASE_DIR/$LOGS_SUBDIR"/*; do
+if [ -d "$LOGS_SUBDIR" ]; then
+    for subdir in "$LOGS_SUBDIR"/*; do
         if [ -d "$subdir" ]; then
             delete_logs_in_dir "$subdir"
         fi
     done
 else
-    echo "Logs directory does not exist: $BASE_DIR/$LOGS_SUBDIR"
+    echo "Logs directory does not exist: $LOGS_SUBDIR"
 fi
 
 
