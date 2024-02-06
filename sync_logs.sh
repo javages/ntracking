@@ -36,16 +36,15 @@ mkdir -p "$DEST_BASE_DIR/system_20"
 mkdir -p "$DEST_BASE_DIR/system_21"
 mkdir -p "$DEST_BASE_DIR/system_22"
 
-# for local machin oracle
+# for local machin server
 mkdir -p "$DEST_BASE_DIR/server"
-sudo chmod -R 757 "$DEST_BASE_DIR"
 echo "Subdirectories created."
 
 # Change directory to where the log files are located
 cd $HOME
 
 # Synchronize the local machine's log to the appropriate subdirectory
-rsync -avz --update "$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log" "$DEST_BASE_DIR/server/"
+rsync -avz --update \$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log \$HOME/.local/share/ntracking_working_folder/server/
 
 # Synchronize logs from each remote machine to separate subdirectories
 rsync -avz --update system_01:"$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log" "$DEST_BASE_DIR/system_01/"
