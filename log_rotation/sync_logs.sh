@@ -88,4 +88,8 @@ rsync -avz --update system_30:$HOME/.local/share/ntracking_working_folder/local_
 
 echo "Synchronization script completed."
 
+#delete empty folders from non existing machines
+find $HOME/.local/share/ntracking_working_folder/logs/ -type d -empty -print -delete
+
+
 exit 0
