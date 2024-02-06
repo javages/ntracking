@@ -11,9 +11,9 @@ button=black,white
 
 SELECTION=$(whiptail --title "NTracking and Vdash instalation" --radiolist \
 "Instalation Options                              " 20 70 10 \
-"1" "Install NTracking" OFF \
-"2" "Update NTracking" ON \
-"3" "Uninstall NTracking " OFF \
+"1" "Setup NTracking Master" OFF \
+"2" "Setup NTracking Slave" OFF \
+"3" "Update Ntracking " ON \
 "4" "Setup Dynamic DNS service            " OFF 3>&1 1>&2 2>&3)
 
 
@@ -21,9 +21,9 @@ if [[ $? -eq 255 ]]; then
 exit 0
 fi
 
-######################################################################################################################## Install NTracking
+######################################################################################################################## Setup NTracking Master
 if [[ "$SELECTION" == "1" ]]; then
-
+sudo apt update
 ############ Download NTracking
 clear
 echo "downloading NTracking from github"
@@ -51,8 +51,8 @@ sudo apt install python3.10-venv
 clear
 echo "setup virtual enviroment"
 sleep 2
-python3 -m venv $HOME/.local/share/ntracking/RPvenv
-source $HOME/.local/share/ntracking/RPvenv/bin/activate
+python3 -m venv $HOME/.local/share/ntracking_RPvenv/RPvenv
+source $HOME/.local/share/ntracking_RPvenv/RPvenv/bin/activate
 
 
 # install prerequzits
@@ -88,15 +88,50 @@ pip3 install matplotlib
 
 #!/usr/bin/env bash
 
-######################################################################################################################## Update NTracking
+######################## install vnstat
+sudo apt install vnstat
+whiptail --msgbox --title "installation of vnstat complete" "if you have more than one network adapter you must remove all network adapters except the primary internet connection that the nodes use to connect to the internet use the following command.\n\n\nsudo vnstat --remove --iface <network adapter to remove> --force" 25 80
+
+######################## install nginx
+sudo apt install nginx
+sudo ufw allow 80/tcp comment 'NTracking'
+sudo chmod -R 757 /var/www
+cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
+sudo tee /etc/nginx/sites-enabled/default 2>&1 > /dev/null <<-EOF
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/ntracking;
+
+        index index.html;
+
+        server_name _;
+
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+}
+EOF
+sudo systemctl restart nginx.service
+whiptail --msgbox --title "installation of nginx webserver complete" "nginx set up complete\n \nport 80 opened in fire wall\n\n\nif you enter this systems ip address into your web browser\nyou should see the NTracking comming soon page\n\nif you are on a local lan no port forwad is required\n\nif it is a cloud node or on a diferent network you will need to make sure there is a port forward setup" 25 80
+######################## setup cron jobs
+
+echo "*/20 * * * * $USER /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
+echo "10 0 * * * $USER /bin/bash $HOME/safe-scripts/ntracking_log_rm.sh" | sudo tee /etc/cron.d/ntracking_log_rm
+echo "0 * * * * $USER /bin/bash $HOME/.local/share/ntracking/mtracking/machine_resources.sh" | sudo tee /etc/cron.d/ntracking_mtracking_machine_resources
+echo '5 * * * * $USER /bin/bash $HOME/.local/share/ntracking/execute_steps.sh' | sudo tee /etc/cron.d/ntracking_execute_steps
+
+
+######################################################################################################################## Setup NTracking Slave
 elif [[ "$SELECTION" == "2" ]]; then
 
 echo "2"
-######################################################################################################################## Uninstall NTracking
+######################################################################################################################## update NTracking
 elif [[ "$SELECTION" == "3" ]]; then
 
 echo "3"
-######################################################################################################################## Setup Dynamic DNS service
+######################################################################################################################## Uninstall NTracking
 elif [[ "$SELECTION" == "4" ]]; then
 
 echo "4"
