@@ -102,6 +102,7 @@ sleep 2
 sudo apt install nginx
 sudo ufw allow 80/tcp comment 'NTracking'
 sudo chmod -R 757 /var/www
+mkdir /var/www/ntracking
 cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
 sudo tee /etc/nginx/sites-enabled/default 2>&1 > /dev/null <<-EOF
 server {
