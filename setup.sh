@@ -1,82 +1,104 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Set the installation directory
-install_dir="${HOME}/ntracking"
+export NEWT_COLORS='
+window=,white
+border=black,white
+textbox=black,white
+button=black,white
+'
 
-# Check if the directory doesn't exist, create it
-if [[ ! -d $install_dir ]]; then
-    mkdir -p $install_dir
-fi 
+############################################## select test net action
 
-# Copy assets to the installation directory
-for file in *; do
-    cp -v $file $install_dir
-done
+SELECTION=$(whiptail --title "NTracking and Vdash instalation" --radiolist \
+"Instalation Options                              " 20 70 10 \
+"1" "Install NTracking" OFF \
+"2" "Update NTracking" ON \
+"3" "Uninstall NTracking " OFF \
+"4" "Setup Dynamic DNS service            " OFF 3>&1 1>&2 2>&3)
 
+
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
+
+######################################################################################################################## Install NTracking
+if [[ "$SELECTION" == "1" ]]; then
+
+############ Download NTracking
+clear
+echo "downloading NTracking from github"
+sleep 2
+git clone git@github.com:safenetforum-community/ntracking.git $HOME/.local/share/ntracking
+
+############ add NTracking dir to path
+clear
+echo "adding $HOME/.local/share/ntracking to path"
+sleep 2
+echo export PATH=$PATH:$HOME/.local/share/ntracking/ >> $HOME/.bashrc
+source $HOME/.bashrc
+
+############ setup cron tasks
+
+
+############ install pre requsites
 #Install venv
+clear
+echo "install venve"
+sleep 2
 sudo apt install python3.10-venv
 
 # Set up a virtual environment (venv)
-python3 -m venv $install_dir/RPvenv
-source $install_dir/RPvenv/bin/activate
+clear
+echo "setup virtual enviroment"
+sleep 2
+python3 -m venv $HOME/.local/share/ntracking/RPvenv
+source $HOME/.local/share/ntracking/RPvenv/bin/activate
 
-# Sort permissions for certain scripts
-chmod +x -v \
-  install_prereqs.sh \
-  ./resources.sh \
-  ./create_graphs.sh
- 
-# Get prerequisites by running install_prereqs.sh
-bash ./install_prereqs.sh
 
-read -p "Do you want to set up the cronjob now? it is need for this to work! (yes/no) " answer
+# install prerequzits
 
-if [ "$answer" == "yes" ]; then
-    # Set up the first cronjob without any user options
-    (crontab -l 2>/dev/null; echo "*/10 * * * * /bin/bash ${HOME}/ntracking/resources.sh >> ${HOME}/ntracking/resources.log 2>&1") | crontab -
-    
-    # Ask user about setting up automatic graph creation
-    read -p "Would you like to automate the graph creation? (yes/no) " graph_answer
+#!${HOME}/.local/share/ntracking/RPvenv/bin/python
 
-    if [ "$graph_answer" == "yes" ]; then
-        read -p "How often would you like the graphs created? every (30 min, 1 hour, 5 hours, 12 hours) " frequency
+# Display the version of pip
+clear
+echo "version of pip"
+sleep 2
+pip --version
 
-        # Convert frequency to cron syntax
-        case "$frequency" in
-            "30 min")
-                cron_time="*/30 * * * *"
-                ;;
-            "1 hour")
-                cron_time="0 * * * *"
-                ;;
-            "5 hours")
-                cron_time="0 */5 * * *"
-                ;;
-            "12 hours")
-                cron_time="0 */12 * * *"
-                ;;
-            *)
-                echo "Unsupported frequency. Exiting."
-                exit 1
-                ;;
-        esac
+# Install the 'pandas' and 'plotly.express' Python packages using pip3
+clear
+echo "installing pandas"
+sleep 2
+pip3 install pandas
 
-        # Add the cronjob for graph creation
-        (crontab -l 2>/dev/null; echo "$cron_time $install_dir/create_graphs.sh") | crontab -
-    fi
-    
-    echo "Setup complete. Remember, if you no longer need these cronjobs, you can remove them by running 'crontab -e' in the terminal and deleting the corresponding lines."
-else
-    echo "Cronjob setup skipped."
+clear
+echo "installing plotly"
+sleep 2
+pip3 install plotly.express
+
+clear
+echo "installing matplotlib"
+sleep 2
+pip3 install matplotlib
+
+#clear
+#echo "jinga"
+#sleep 2
+#pip3 install matplotlib
+
+#!/usr/bin/env bash
+
+######################################################################################################################## Update NTracking
+elif [[ "$SELECTION" == "2" ]]; then
+
+echo "2"
+######################################################################################################################## Uninstall NTracking
+elif [[ "$SELECTION" == "3" ]]; then
+
+echo "3"
+######################################################################################################################## Setup Dynamic DNS service
+elif [[ "$SELECTION" == "4" ]]; then
+
+echo "4"
+
 fi
-
-# Installation completion message
-echo ""
-echo "--------------------------NTracking installation is complete------------------------------"
-echo ""
-echo ""
-echo " Once you have run for a few hours and have enough data, you can generate your graphs.  "
-echo " Your graphs will be stored at ~/ntracking/"
-echo " Use NTracking.html to view them, or open them directly."
-
-
