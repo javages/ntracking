@@ -51,13 +51,13 @@ sudo apt install python3.10-venv
 clear
 echo "setup virtual enviroment"
 sleep 2
-python3 -m venv $HOME/.local/share/ntracking_RPvenv/RPvenv
-source $HOME/.local/share/ntracking_RPvenv/RPvenv/bin/activate
+python3 -m venv $HOME/.local/share/RPvenv
+source $HOME/.local/share/RPvenv/bin/activate
 
 
 # install prerequzits
 
-#!${HOME}/.local/share/ntracking/RPvenv/bin/python
+#!${HOME}/.local/share/RPvenv/bin/python
 
 # Display the version of pip
 clear
