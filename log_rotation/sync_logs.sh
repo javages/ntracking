@@ -34,4 +34,7 @@ rsync -avz --update wyse4@192.168.254.158:"/home/wyse4/resources_*.log" "$DEST_B
 
 echo "Synchronization script completed."
 
+#delete empty folders from non existing machines
+find $HOME/.local/share/ntracking_working_folder/logs/ -type d -empty -print -delete
+
 
