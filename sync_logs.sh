@@ -44,7 +44,7 @@ echo "Subdirectories created."
 cd $HOME
 
 # Synchronize the local machine's log to the appropriate subdirectory
-rsync -avz --update "$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log" "$DEST_BASE_DIR/server/"
+rsync -avz --update $HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log $DEST_BASE_DIR/server/
 
 # Synchronize logs from each remote machine to separate subdirectories
 rsync -avz --update system_01:"$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log" "$DEST_BASE_DIR/system_01/"
