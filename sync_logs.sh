@@ -3,7 +3,7 @@
 echo "Starting the synchronization script..."
 
 # Define the base destination directory
-DEST_BASE_DIR="$HOME/ntracking/logs"
+DEST_BASE_DIR="$HOME/.local/share/ntracking_working_folder/logs"
 echo "Base destination directory: $DEST_BASE_DIR"
 
 # Create the base destination directory if it doesn't exist
@@ -37,7 +37,7 @@ mkdir -p "$DEST_BASE_DIR/s21"
 mkdir -p "$DEST_BASE_DIR/s22"
 
 # for local machin oracle
-mkdir -p "$DEST_BASE_DIR/s"
+mkdir -p "$DEST_BASE_DIR/server"
 
 echo "Subdirectories created."
 
@@ -45,7 +45,7 @@ echo "Subdirectories created."
 cd $HOME
 
 # Synchronize the local machine's log to the appropriate subdirectory
-rsync -avz --update $HOME/resources_*.log "$DEST_BASE_DIR/s/"
+rsync -avz --update "$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log" "$DEST_BASE_DIR/server/"
 
 # Synchronize logs from each remote machine to separate subdirectories
 rsync -avz --update safe-s01:"/home/ubuntu/resources_*.log" "$DEST_BASE_DIR/s01/"
