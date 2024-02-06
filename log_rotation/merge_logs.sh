@@ -4,10 +4,10 @@
 BASE_LOG_DIR="$HOME/.local/share/ntracking_working_folder/logs"
 
 # Loop through each machine
-for machine in server system-01 s02 s03 s04 s05 s06 s07 s08 s09 s10 s11 s12 s13 s14 s15 s16 s17 s18 s19 s20 s21 s22; do
+for machine in server system_01 system_02 system_03 system_04 system_05 system_06 system_07 system_08 system_09 system_10 system_11 system_12 system_13 system_14 system_15 system_16 system_17 system_18 system_19 system_20 system_21 system_22 system_23 system_24 system_25 system_26 system_27 system_28 system_29 system_30; do
     # Define the source directory and the merged log file name
     LOG_DIR="$BASE_LOG_DIR/$machine"
-    MERGED_LOG="/home/ubuntu/ntracking/resources${machine#s}.log" # e.g., resources1.log for s1
+    MERGED_LOG="$HOME/ntracking_working_folder/resources${machine#s}.log" # e.g., resources1.log for system_01
 
     # Find, sort, and concatenate logs from the last 7 days into the merged log file
     find "$LOG_DIR" -name 'resources_*.log' -mtime -7 -print0 | sort -z | xargs -0 cat > "$MERGED_LOG"
