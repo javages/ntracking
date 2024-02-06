@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Define the base directory and the logs subdirectory
-BASE_DIR="$HOME"
-LOGS_SUBDIR="ntracking/logs"
+BASE_DIR="$HOME/.local/share/ntracking_working_folder/local_machine"
+LOGS_SUBDIR="$HOME/.local/share/ntracking_working_folder/logs"
 
 # Define the age limit in days
-AGE_LIMIT=2
+AGE_LIMIT=3
 
 # Current date as Unix timestamp
 CURRENT_TIMESTAMP=$(date +%s)
