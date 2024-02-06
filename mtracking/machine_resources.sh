@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Log
-output_file="machine_resources.log"  # Replace with your desired path
+output_file="$HOME/.local/share/ntracking_working_folder/local_machine/machine_resources.log"  # Replace with your desired path
+mkdir -p $HOME/.local/share/ntracking_working_folder/local_machine
 
 # CPU usage
 cpu_usage=$(top -bn1 | grep load | awk '{printf "%.2f%%\t\t", $(NF-2)}')
