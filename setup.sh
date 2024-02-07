@@ -14,7 +14,9 @@ SELECTION=$(whiptail --title "NTracking and Vdash instalation" --radiolist \
 "1" "Setup NTracking Master" OFF \
 "2" "Setup NTracking Slave" OFF \
 "3" "Update Ntracking " ON \
-"4" "Setup Dynamic DNS service            " OFF 3>&1 1>&2 2>&3)
+"4" "Uninstall NTracking " OFF \
+"5" "Install Vdash " OFF \
+"6" "Update Vdash            " OFF 3>&1 1>&2 2>&3)
 
 
 if [[ $? -eq 255 ]]; then
@@ -129,14 +131,41 @@ echo "5 * * * * $USER /bin/bash $HOME/.local/share/ntracking/execute_steps.sh" |
 ######################################################################################################################## Setup NTracking Slave
 elif [[ "$SELECTION" == "2" ]]; then
 
-echo "2"
+# download NTracking
+git clone https://github.com/safenetforum-community/ntracking.git $HOME/.local/share/ntracking
+
+##setup cron jobs
+echo "*/20 * * * * $USER /usr/bin/mkdir -p $HOME/.local/share/local_machine && /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/.local/share/local_machine/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
+echo "10 0 * * * $USER /bin/bash $HOME/.local/share/ntracking/log_rotation/log_rm.sh" | sudo tee /etc/cron.d/ntracking_log_rm
+echo "0 * * * * $USER /bin/bash $HOME/.local/share/ntracking/mtracking/machine_resources.sh" | sudo tee /etc/cron.d/ntracking_mtracking_machine_resources
+
 ######################################################################################################################## update NTracking
 elif [[ "$SELECTION" == "3" ]]; then
 
-echo "3"
+cd $HOME/.local/share/ntracking
+git pull
+
 ######################################################################################################################## Uninstall NTracking
 elif [[ "$SELECTION" == "4" ]]; then
 
-echo "4"
+##### delete cron jobs
+sudo rm /etc/cron.d/ntracking*
+
+##### delete ntracking
+rm -rf $HOME/.local/share/ntracking
+rm -rf $HOME/.local/share/local_machine
+
+######################################################################################################################## install Vdash
+elif [[ "$SELECTION" == "5" ]]; then
+
+curl https://sh.rustup.rs -sSf | sh
+sudo apt install cargo
+cargo install vdash
+
+######################################################################################################################## update Vdash
+elif [[ "$SELECTION" == "6" ]]; then
+
+rustup update
+cargo install vdash
 
 fi
