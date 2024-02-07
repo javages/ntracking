@@ -84,7 +84,7 @@ pip3 install matplotlib
 clear
 echo "jinja2"
 sleep 2
-pip install jinja2
+pip3 install jinja2
 
 #!/usr/bin/env bash
 
