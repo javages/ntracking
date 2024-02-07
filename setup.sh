@@ -42,7 +42,7 @@ source $HOME/.bashrc
 clear
 echo "install venve"
 sleep 2
-sudo apt install python3.10-venv
+sudo apt install python3.10-venv -y
 
 # Set up a virtual environment (venv)
 clear
@@ -86,7 +86,7 @@ pip3 install jinja2
 clear
 echo "installing vnstat"
 sleep 2
-sudo apt install vnstat
+sudo apt install vnstat -y
 whiptail --msgbox --title "installation of vnstat complete" "if you have more than one network adapter you must remove all network adapters except the primary internet connection that the nodes use to connect to the internet use the following command.\n\n\nsudo vnstat --remove --iface <network adapter to remove> --force" 25 80
 
 ######################## install nginx
