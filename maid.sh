@@ -4,7 +4,8 @@ CLIENT=0.89.49
 NODE=0.103.45
 FAUCET=178.128.166.148:8000
 
-NODE_PORT_FIRST=4700
+# first node port can edited in menu later
+NODE_PORT_FIRST=12000
 NUMBER_NODES=2
 NUMBER_COINS=1
 NODE_START_DELAY=0
@@ -38,6 +39,10 @@ if [[ "$SELECTION" == "1" ]]; then
 pkill -e safenode
 
 NUMBER_NODES=$(whiptail --title "Number of Nodes to start" --inputbox "\nEnter number of nodes" 8 40 $NUMBER_NODES 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
+NODE_PORT_FIRST=$(whiptail --title "Port Number of first Node" --inputbox "\nEnter Port Number of first Node" 8 40 $NODE_PORT_FIRST 3>&1 1>&2 2>&3)
 if [[ $? -eq 255 ]]; then
 exit 0
 fi
