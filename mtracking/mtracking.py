@@ -18,7 +18,7 @@ hex_colors = ['#' + ''.join([f"{int(c*255):02x}" for c in color[:3]]) for color 
 
 
 # Define the pattern to match the log files (e.g., 'machine_resources*.log')
-log_file_pattern = 'Wyse*'
+log_file_pattern = 'M*'
 
 # Use glob to find all matching log files and sort them
 log_files = sorted(glob.glob(log_file_pattern))
