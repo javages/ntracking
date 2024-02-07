@@ -1,0 +1,31 @@
+# sample config file for remote machines should be put in config file @ $HOME/.ssh/config
+
+Host s01
+	HostName <host name or ip address>.ddns.net
+	Port 22
+	User User <user name>
+	IdentityFile ~/.ssh/id_rsa
+	
+Host s02
+	HostName <host name or ip address>.ddns.net
+	Port 22
+	User User <user name>
+	IdentityFile ~/.ssh/id_rsa
+
+Host s03
+	HostName <host name or ip address>.ddns.net
+	Port 22
+	User User <user name>
+	IdentityFile ~/.ssh/id_rsa
+
+Host s04
+	HostName <host name or ip address>.ddns.net
+	Port 22
+	User User <user name>
+	IdentityFile ~/.ssh/id_rsa
+	
+Host s05
+	HostName <host name or ip address>.ddns.net
+	Port 22
+	User <user name>
+	IdentityFile ~/.ssh/id_rsa
