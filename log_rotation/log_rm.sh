@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the base directory and the logs subdirectory
-BASE_DIR="$HOME/.local/share/ntracking_working_folder/local_machine"
-LOGS_SUBDIR="$HOME/.local/share/ntracking_working_folder/logs"
+BASE_DIR="$HOME/.local/share/local_machine"
+LOGS_SUBDIR="$HOME/.local/share/ntracking/logs"
 
 # Define the age limit in days
 AGE_LIMIT=3
