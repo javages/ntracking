@@ -12,3 +12,6 @@ for machine in s s01 s02 s03 s04 s05 s06 s07 s08 s09 s10 s11 s12 s13 s14 s15 s16
     # Find, sort, and concatenate logs from the last 7 days into the merged log file
     find "$LOG_DIR" -name 'resources_*.log' -mtime -7 -print0 | sort -z | xargs -0 cat > "$MERGED_LOG"
 done
+
+#delete empty files from non existing machines
+find $HOME/.local/share/ntracking_working_folder/ -type f -empty -print -delete
