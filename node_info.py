@@ -1,7 +1,9 @@
 import re
 from datetime import datetime
 import glob
+
 outFileName="$HOME/.local/share/ntracking_working_folder"
+script_dir = "$HOME/.local/share/ntracking_working_folder"
 
 def parse_log(file_path):
     with open(file_path, 'r') as f:
