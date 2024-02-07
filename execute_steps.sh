@@ -49,6 +49,7 @@ echo "Copying files..."
 
 cp $HOME/.local/share/ntracking/*.html .
 cp $HOME/.local/share/ntracking/*.txt .
+cp $HOME/.local/share/ntracking/mtracking/*.png .
 
 
 
