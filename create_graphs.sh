@@ -1,11 +1,11 @@
 #!/bin/bash
 
-install_dir="${HOME}/.local/share"
+install_dir="$HOME/.local/share/ntracking_working_folder"
 
 cd $install_dir
 
 # Activate virtual environment
-source $install_dir/RPvenv/bin/activate
+source $HOME/.local/share/RPvenv/bin/activate
 
 python3 $HOME/.local/share/ntracking/all_graphs.py
 
