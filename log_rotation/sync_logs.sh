@@ -45,14 +45,14 @@ mkdir -p "$DEST_BASE_DIR/s29"
 mkdir -p "$DEST_BASE_DIR/s30"
 
 # for local machin server
-mkdir -p "$DEST_BASE_DIR/server"
+mkdir -p "$DEST_BASE_DIR/s"
 echo "Subdirectories created."
 
 # Change directory to where the log files are located
 cd $HOME
 
 # Synchronize the local machine's log to the appropriate subdirectory
-rsync -avz --update $HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log $DEST_BASE_DIR/server/
+rsync -avz --update $HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log $DEST_BASE_DIR/s/
 
 # Synchronize logs from each remote machine to separate subdirectories
 rsync -avz --update system_01:$HOME/.local/share/ntracking_working_folder/local_machine/resources_*.log $DEST_BASE_DIR/s01/
