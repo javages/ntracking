@@ -15,7 +15,7 @@ echo "In ntracking directory."
 
 # Log Synchronization
 echo "Starting log synchronization..."
-$HOME/.local/share/ntracking/sync_logs.sh
+$HOME/.local/share/ntracking/log_rotation/sync_logs.sh
 echo "Log synchronization completed."
 
 #mtracking log sync
@@ -23,21 +23,21 @@ $HOME/.local/share/ntracking/mtracking/machine_logs_scp.sh
 
 # Log Merging
 echo "Starting log merging..."
-$HOME/.local/share/ntracking/merge_logs.sh
+$HOME/.local/share/ntracking/log_rotation/merge_logs.sh
 echo "Log merging completed."
 
 # Get Node Info
 echo "Retrieving node info..."
-python3 /home/ubuntu/ntracking/node_info.py
+python3 $HOME/.local/share/ntracking/node_info.py
 echo "Node info retrieved."
 
 # Generate the graphs
 echo "Generating graphs..."
-$HOME/ntracking/create_graphs.sh
+$HOME/.local/share/ntracking/create_graphs.sh
 echo "Graphs generated."
 
 #mtracking generate graphs
-python3 /home/ubuntu/ntracking/mtracking.py
+python3 $home/ntracking/mtracking/mtracking.py
 
 # Navigate to the nginx folder
 echo "Navigating to nginx directory..."
@@ -47,8 +47,8 @@ echo "In nginx folder."
 # Copy the files
 echo "Copying files..."
 
-cp /home/ubuntu/ntracking/*.html .
-cp /home/ubuntu/ntracking/*.txt .
+cp $HOME/.local/share/ntracking/*.html .
+cp $HOME/.local/share/ntracking/*.txt .
 
 
 
