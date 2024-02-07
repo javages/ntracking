@@ -134,6 +134,13 @@ elif [[ "$SELECTION" == "2" ]]; then
 # download NTracking
 git clone https://github.com/safenetforum-community/ntracking.git $HOME/.local/share/ntracking
 
+############ add NTracking dir to path
+clear
+echo "adding $HOME/.local/share/ntracking to path"
+sleep 2
+echo export PATH=$PATH:$HOME/.local/share/ntracking/ >> $HOME/.bashrc
+source $HOME/.bashrc
+
 ##setup cron jobs
 echo "*/20 * * * * $USER /usr/bin/mkdir -p $HOME/.local/share/local_machine && /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/.local/share/local_machine/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
 echo "10 0 * * * $USER /bin/bash $HOME/.local/share/ntracking/log_rotation/log_rm.sh" | sudo tee /etc/cron.d/ntracking_log_rm
