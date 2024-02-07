@@ -51,6 +51,8 @@ sleep 2
 python3 -m venv $HOME/.local/share/ntracking/RPvenv
 source $HOME/.local/share/ntracking/RPvenv/bin/activate
 
+sudo apt install python3-pip -y
+
 #!${HOME}/.local/share/ntracking/RPvenv/bin/python
 
 # Display the version of pip
