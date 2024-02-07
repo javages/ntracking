@@ -124,7 +124,7 @@ sudo systemctl restart nginx.service
 whiptail --msgbox --title "installation of nginx webserver complete" "nginx set up complete\n \nport 80 opened in fire wall\n\n\nif you enter this systems ip address into your web browser\nyou should see the NTracking comming soon page\n\nif you are on a local lan no port forwad is required\n\nif it is a cloud node or on a diferent network you will need to make sure there is a port forward setup" 25 80
 ######################## setup cron jobs
 
-echo "*/20 * * * * $USER /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/.local/share/ntracking_working_folder/local_machine/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
+echo "*/20 * * * * $USER /usr/bin/mkdir -p $HOME/.local/share/ntracking_working_folder/local_machine && /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/.local/share/ntracking_working_folder/local_machine/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
 echo "10 0 * * * $USER /bin/bash $HOME/.local/share/ntracking/log_rotation/log_rm.sh" | sudo tee /etc/cron.d/ntracking_log_rm
 echo "0 * * * * $USER /bin/bash $HOME/.local/share/ntracking/mtracking/machine_resources.sh" | sudo tee /etc/cron.d/ntracking_mtracking_machine_resources
 echo "5 * * * * $USER /bin/bash $HOME/.local/share/ntracking/execute_steps.sh" | sudo tee /etc/cron.d/ntracking_execute_steps
