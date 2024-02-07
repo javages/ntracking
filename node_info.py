@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 import glob
 
+import os
 user_home = os.path.expanduser("~")
 datadir = os.path.join(user_home, ".local", "share", "ntracking")
 
