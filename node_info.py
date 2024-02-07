@@ -72,7 +72,7 @@ def main():
     running_nodes = set(entry['Node'] for entry in unique_entries.values() if entry['Status'] == 'running')
     killed_nodes = set(entry['Node'] for entry in unique_entries.values() if entry['Status'] == 'killed')
     
-    with open("node_info.txt", "w") as outfile:
+    with open("$HOME/.local/share/ntracking_working_folder/node_info.txt", "w") as outfile:
         outfile.write("= Stats =\n")
         outfile.write(f"Rewards: {total_reward:.8f}\n")
         outfile.write(f"Running: {len(running_nodes)}\n")
