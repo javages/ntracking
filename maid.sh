@@ -80,13 +80,6 @@ do
 done
 sleep 2
 
-############################# start cron jobs for ntracking
-
-echo "*/20 * * * * $USER /usr/bin/mkdir -p $HOME/.local/share/local_machine && /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/.local/share/local_machine/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
-echo "10 0 * * * $USER /bin/bash $HOME/.local/share/ntracking/log_rotation/log_rm.sh" | sudo tee /etc/cron.d/ntracking_log_rm
-echo "0 * * * * $USER /bin/bash $HOME/.local/share/ntracking/mtracking/machine_resources.sh" | sudo tee /etc/cron.d/ntracking_mtracking_machine_resources
-echo "5 * * * * $USER /bin/bash $HOME/.local/share/ntracking/execute_steps.sh" | sudo tee /etc/cron.d/ntracking_execute_steps
-
 ############################# get 200 test coins
 for (( c=1; c<=2; c++ ))
 do 
@@ -115,9 +108,6 @@ pkill -e safenode
 PORTS_TO_CLOSE=$(ls $HOME/.local/share/safe/node | wc -l)
 sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/udp comment 'safe nodes'
 ############################## Stop Nodes and delete safe folder
-
-#delet cron jobs for ntracking
-sudo rm /etc/cron.d/ntracking*
 
 remove safe folder
 rm -rf $HOME/.local/share/safe
