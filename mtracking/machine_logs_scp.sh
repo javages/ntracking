@@ -1,4 +1,5 @@
-cp $HOME/machine_resources.log /home/ubuntu/ntracking/Machine_S.log
+#!/bin/bash
+cp $HOME/.local/share/ntracking_working_folder/local_machine/machine_resources.log $HOME/.local/share/ntracking_working_folder/Machine_S00.log
 rsync -avz --update safe-s01:"/home/ubuntu/machine_resources.log" "/home/ubuntu/ntracking/Machine_S01.log"
 rsync -avz --update safe-s02:"/home/ubuntu/machine_resources.log" "/home/ubuntu/ntracking/Machine_S02.log"
 rsync -avz --update safe-s03:"/home/ubuntu/machine_resources.log" "/home/ubuntu/ntracking/Machine_S03.log"
