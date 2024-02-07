@@ -51,14 +51,12 @@ curl -sSL https://raw.githubusercontent.com/maidsafe/safeup/main/install.sh | ba
 rm -rf $HOME/.local/share/safe
 
 # remove ntracking logs
-rm -rf $HOME/ip_cache.txt
-rm -rf $HOME/node_registry.conf
-rm -rf $HOME/*.log
-rm $HOME/ntracking/*.log
-rm -rf $HOME/ntracking/logs
-mv $HOME/ntracking/index.html.standby $HOME/ntracking/index.html
+rm -rf $HOME/.local/share/local_machine
+rm -rf $HOME/.local/share/ntracking/logs
+rm $HOME/.local/share/ntracking/*.log
 
-sudo cp /var/www/ntracking/commingsoon.html /var/www/ntracking/index.html
+mv $HOME/.local/share/ntracking/index.html.standby $HOME/.local/share/ntracking/index.html
+cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
 
 ## reset vnstat database
 sudo systemctl stop vnstat.service
@@ -112,14 +110,13 @@ sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/u
 
 rm -rf $HOME/.local/share/safe
 
-sudo cp /var/www/ntracking/commingsoon.html /var/www/ntracking/index.html
+mv $HOME/.local/share/ntracking/index.html $HOME/.local/share/ntracking/index.html.standby
+cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
 
-rm -rf $HOME/ip_cache.txt
-rm -rf $HOME/node_registry.conf
-rm -rf $HOME/*.log
-rm $HOME/ntracking/*.log
-rm -rf $HOME/ntracking/logs
-mv $HOME/ntracking/index.html $HOME/ntracking/index.html.standby
+rm -rf $HOME/.local/share/local_machine
+rm $HOME/.local/share/ntracking/*.log
+rm -rf $HOME/local.share/ntracking/logs
+
 
 sleep 2
 
