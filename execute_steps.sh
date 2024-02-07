@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure the script exits if any command fails
-set -e
+#set -e
 
 # Source environment variables
 echo "Sourcing environment variables..."
