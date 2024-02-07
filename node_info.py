@@ -2,10 +2,6 @@ import re
 from datetime import datetime
 import glob
 
-outFileName="$HOME/.local/share/ntracking_working_folder"
->>>path = os.path.join(os.path.expanduser('~'), '.local/share/ntracking_working_folder')
->>>print (path)
-
 def parse_log(file_path):
     with open(file_path, 'r') as f:
         content = f.read()
