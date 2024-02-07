@@ -1,6 +1,6 @@
 #!/bin/bash
 
-install_dir="${HOME}/ntracking"
+install_dir="${HOME}/.local/share"
 
 cd $install_dir
 
