@@ -7,7 +7,7 @@ textbox=black,white
 button=black,white
 '
 
-############################################## select test net action
+############################################## select install action
 
 SELECTION=$(whiptail --title "NTracking and Vdash instalation" --radiolist \
 "Instalation Options                              " 20 70 10 \
@@ -141,7 +141,15 @@ sleep 2
 echo export PATH=$PATH:$HOME/.local/share/ntracking/ >> $HOME/.bashrc
 source $HOME/.bashrc
 
-##setup cron jobs
+######################## install vnstat
+clear
+echo "installing vnstat"
+sleep 2
+sudo apt install vnstat -y
+whiptail --msgbox --title "installation of vnstat complete" "if you have more than one network adapter you must remove all network adapters except the primary internet connection that the nodes use to connect to the internet use the following command.\n\n\nsudo vnstat --remove --iface <network adapter to remove> --force" 25 80
+
+
+######################### setup cron jobs
 echo "*/20 * * * * $USER /usr/bin/mkdir -p $HOME/.local/share/local_machine && /bin/bash $HOME/.local/share/ntracking/resources.sh >> $HOME/.local/share/local_machine/resources_\$(date +\%Y\%m\%d).log 2>&1" | sudo tee /etc/cron.d/ntracking_resources
 echo "10 0 * * * $USER /bin/bash $HOME/.local/share/ntracking/log_rotation/log_rm.sh" | sudo tee /etc/cron.d/ntracking_log_rm
 echo "0 * * * * $USER /bin/bash $HOME/.local/share/ntracking/mtracking/machine_resources.sh" | sudo tee /etc/cron.d/ntracking_mtracking_machine_resources
