@@ -22,9 +22,9 @@ button=black,white
 SELECTION=$(whiptail --title "Safe Network Testnet" --radiolist \
 "Testnet Actions                              " 20 70 10 \
 "1" "Upgrade Client & Node to Latest" OFF \
-"2" "Upgrade Client to Latest" ON \
+"2" "Upgrade Client to Latest" OFF \
 "3" "Stop Nodes" OFF \
-"4" "Get Test Coins" OFF \
+"4" "Get Test Coins" ON \
 "5" "Start Vdash" OFF \
 "6" "Update all and Restart" OFF \
 "7" "setup NTracking & Vdash" OFF 3>&1 1>&2 2>&3)
