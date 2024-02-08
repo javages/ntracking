@@ -30,7 +30,7 @@ sudo apt update
 clear
 echo "downloading NTracking from github"
 sleep 2
-git clone git@github.com:safenetforum-community/ntracking.git $HOME/.local/share/ntracking
+git clone https://github.com/safenetforum-community/ntracking.git $HOME/.local/share/ntracking
 
 ############ add NTracking dir to path
 clear
