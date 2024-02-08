@@ -2,7 +2,7 @@
 
 DEST_BASE_DIR="$HOME/.local/share/ntracking"
 
-rsync -avz --update $HOME/.local/share/local_machine/machine_resources.log $DEST_BASE_DIR/Machine_S.log
+rsync -avz --update $HOME/.local/share/local_machine/machine_resources.log $DEST_BASE_DIR/Machine_S00_Master.log
 
 rsync -avz --update s01:$HOME/.local/share/local_machine/machine_resources.log $DEST_BASE_DIR/Machine_S01.log 
 rsync -avz --update s02:$HOME/.local/share/local_machine/machine_resources.log $DEST_BASE_DIR/Machine_S02.log 
