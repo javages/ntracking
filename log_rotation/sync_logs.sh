@@ -71,7 +71,7 @@ rsync -avz --update s13:$HOME/.local/share/local_machine/resources_*.log $DEST_B
 rsync -avz --update s14:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s14/
 rsync -avz --update s15:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s15/
 rsync -avz --update s16:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s16/
-rsync -avz --update s17:$HOME/.local/sharelocal_machine/resources_*.log $DEST_BASE_DIR/s17/
+rsync -avz --update s17:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s17/
 rsync -avz --update s18:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s18/
 rsync -avz --update s19:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s19/
 rsync -avz --update s20:$HOME/.local/share/local_machine/resources_*.log $DEST_BASE_DIR/s20/
