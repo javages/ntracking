@@ -103,7 +103,7 @@ sudo ufw allow 80/tcp comment 'NTracking'
 sudo chmod -R 757 /var/www
 mkdir /var/www/ntracking
 cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
-sudo tee /etc/nginx/sites-enabled/default 2>&1 > /dev/null <<-EOF
+sudo tee /etc/nginx/sites-enabled/default 2>&1 > /dev/null <<EOF
 server {
         listen 80 default_server;
         listen [::]:80 default_server;
@@ -119,6 +119,34 @@ server {
         }
 }
 EOF
+
+sudo tee /etc/nginx/nginx.conf 2>&1 > /dev/null <<EOF
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+http {
+	sendfile on;
+	tcp_nopush on;
+	types_hash_max_size 2048;
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+	ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+	ssl_prefer_server_ciphers on;
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log;
+	gzip on;
+	include /etc/nginx/conf.d/*.conf;
+	include /etc/nginx/sites-enabled/*;
+}
+EOF
+
 sudo systemctl restart nginx.service
 whiptail --msgbox --title "installation of nginx webserver complete" "nginx set up complete\n \nport 80 opened in fire wall\n\n\nif you enter this systems ip address into your web browser\nyou should see the NTracking comming soon page\n\nif you are on a local lan no port forwad is required\n\nif it is a cloud node or on a diferent network you will need to make sure there is a port forward setup" 25 80
 ######################## setup cron jobs
