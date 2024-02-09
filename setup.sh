@@ -243,7 +243,7 @@ if [[ $MACHINE_NO == "s00" ]]; then
 cp $HOME/.local/share/safe/node/logs/$NODE_ID/logs/* /var/www/files/$NODE_ID
 else
 #remote machine
-rsync -avz --update $MACHINE_NO:$HOME/.local/share/safe/node/$NODE_ID/logs/* /var/www/files/$NODE_ID
+rsync -avz --update "$MACHINE_NO":$HOME/.local/share/safe/node/"$NODE_ID"/logs/* /var/www/files/"$NODE_ID"
 fi
 
 
