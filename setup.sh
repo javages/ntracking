@@ -56,8 +56,6 @@ source $HOME/.local/share/ntracking/RPvenv/bin/activate
 
 sudo apt install python3-pip -y
 
-#!${HOME}/.local/share/ntracking/RPvenv/bin/python
-
 # Display the version of pip
 clear
 echo "version of pip"
@@ -84,8 +82,6 @@ clear
 echo "jinja2"
 sleep 2
 pip3 install jinja2
-
-#!/usr/bin/env bash
 
 ######################## install vnstat
 clear
