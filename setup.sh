@@ -71,13 +71,13 @@ pip3 install pandas
 
 clear
 echo "installing plotly"
-sleep 2
 pip3 install plotly.express
+sleep 3
 
 clear
 echo "installing matplotlib"
-sleep 2
 pip3 install matplotlib
+sleep 3
 
 clear
 echo "jinja2"
