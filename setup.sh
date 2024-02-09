@@ -149,10 +149,13 @@ EOF
 
 #enable nginx
 sudo systemctl enable nginx.service
+sleep 2
 #start nginx incase not running by default
 sudo systemctl start nginx.service
+sleep 2
 #restart nginx in case it was running already
 sudo systemctl restart nginx.service
+sleep 2
 whiptail --msgbox --title "installation of nginx webserver complete" "nginx set up complete\n \nport 80 opened in fire wall\n\n\nif you enter this systems ip address into your web browser\nyou should see the NTracking comming soon page\n\nif you are on a local lan no port forwad is required\n\nif it is a cloud node or on a diferent network you will need to make sure there is a port forward setup" 25 80
 ######################## setup cron jobs
 
