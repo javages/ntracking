@@ -222,4 +222,9 @@ elif [[ "$SELECTION" == "6" ]]; then
 rustup update
 cargo install vdash
 
+######################################################################################################################## copy logs to nginx
+elif [[ "$SELECTION" == "7" ]]; then
+
+mkdir -p /var/www/files
+
 fi
