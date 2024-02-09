@@ -16,7 +16,8 @@ SELECTION=$(whiptail --title "NTracking and Vdash instalation" --radiolist \
 "3" "Update Ntracking " OFF \
 "4" "Uninstall NTracking " OFF \
 "5" "Install Vdash " OFF \
-"6" "Update Vdash            " ON 3>&1 1>&2 2>&3)
+"6" "Update Vdash            " ON \
+"7" "copy node logs to nginx            " OFF 3>&1 1>&2 2>&3)
 
 
 if [[ $? -eq 255 ]]; then
