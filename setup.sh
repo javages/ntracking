@@ -225,6 +225,28 @@ cargo install vdash
 ######################################################################################################################## copy logs to nginx
 elif [[ "$SELECTION" == "7" ]]; then
 
-mkdir -p /var/www/files
+NODE_ID=$(whiptail --title "Node ID of node logs to be copied" --inputbox "\nEnter Node ID" 8 40 s01 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
+
+MACHINE_NO=$(whiptail --title "Machine Number" --inputbox "\nEnter Machine Number" 8 40 12D3KooWDGDVu3nXheUgCqnDTjngJJ7BRjM2oRgtMVfwmZPbogLw 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
+
+# make folder
+mkdir -p /var/www/files/$NODE_ID
+
+if [[ $MACHINE_NO == "s00" ]]; then
+# local machine
+cp $HOME/.local/share/safe/node/logs/$NODE_ID/logs/* /var/www/files/$NODE_ID
+else
+#remote machine
+rsync -avz --update $MACHINE_NO:$HOME/.local/share/safe/node/$NODE_ID/logs/* /var/www/files/$NODE_ID
+fi
+
+
+
 
 fi
