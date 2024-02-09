@@ -225,12 +225,12 @@ cargo install vdash
 ######################################################################################################################## copy logs to nginx
 elif [[ "$SELECTION" == "7" ]]; then
 
-NODE_ID=$(whiptail --title "Node ID of node logs to be copied" --inputbox "\nEnter Node ID" 8 40 s01 3>&1 1>&2 2>&3)
+NODE_ID=$(whiptail --title "Node ID of node logs to be copied" --inputbox "\nEnter Node ID" 8 40 12D3KooW 3>&1 1>&2 2>&3)
 if [[ $? -eq 255 ]]; then
 exit 0
 fi
 
-MACHINE_NO=$(whiptail --title "Machine Number" --inputbox "\nEnter Machine Number" 8 40 12D3KooWDGDVu3nXheUgCqnDTjngJJ7BRjM2oRgtMVfwmZPbogLw 3>&1 1>&2 2>&3)
+MACHINE_NO=$(whiptail --title "Machine Number" --inputbox "\nEnter Machine Number" 8 40 s22 3>&1 1>&2 2>&3)
 if [[ $? -eq 255 ]]; then
 exit 0
 fi
@@ -243,7 +243,7 @@ if [[ $MACHINE_NO == "s00" ]]; then
 cp $HOME/.local/share/safe/node/logs/$NODE_ID/logs/* /var/www/files/$NODE_ID
 else
 #remote machine
-rsync -avz --update "$MACHINE_NO":$HOME/.local/share/safe/node/"$NODE_ID"/logs/* /var/www/files/"$NODE_ID"
+rsync -avz --update $MACHINE_NO:$HOME/.local/share/safe/node/$NODE_ID/logs/* /var/www/files/$NODE_ID
 fi
 
 
