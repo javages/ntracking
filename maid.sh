@@ -129,7 +129,10 @@ sleep 2
 
 ################# update and restart
 rustup update
-sudo apt update -y && sudo apt upgrade -y
+sudo apt update -y
+clear
+echo "upgrade system ?"
+sudo apt upgrade
 sudo reboot
 
 ######################################################################################################################## Get Test Coins
