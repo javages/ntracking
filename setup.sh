@@ -50,22 +50,20 @@ sudo apt install python3.10-venv -y
 # Set up a virtual environment (venv)
 clear
 echo "setup virtual enviroment"
-sleep 2
+sleep 3
 python3 -m venv $HOME/.local/share/ntracking/RPvenv
 source $HOME/.local/share/ntracking/RPvenv/bin/activate
-
-sudo apt install python3-pip -y
 
 # Display the version of pip
 clear
 echo "version of pip"
-sleep 2
+sleep 3
 pip --version
 
 # Install the 'pandas' and 'plotly.express' Python packages using pip3
 clear
 echo "installing pandas"
-sleep 2
+sleep 3
 pip3 install pandas
 
 clear
@@ -80,6 +78,10 @@ sleep 20
 
 clear
 echo "jinja2"
+<<<<<<< HEAD
+=======
+sleep 3
+>>>>>>> 38c57580 (Update setup.sh)
 pip3 install jinja2
 sleep 20
 
