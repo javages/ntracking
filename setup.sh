@@ -43,7 +43,7 @@ source $HOME/.bashrc
 ############ install pre requsites
 #Install venv
 clear
-echo "install venve"
+echo "install venv"
 sleep 2
 sudo apt install python3.10-venv -y
 
@@ -71,17 +71,17 @@ pip3 install pandas
 clear
 echo "installing plotly"
 pip3 install plotly.express
-sleep 3
+sleep 20
 
 clear
 echo "installing matplotlib"
 pip3 install matplotlib
-sleep 3
+sleep 20
 
 clear
 echo "jinja2"
-sleep 2
 pip3 install jinja2
+sleep 20
 
 ######################## install vnstat
 clear
@@ -98,7 +98,7 @@ echo "installing nginx"
 sleep 2
 sudo apt install nginx
 sudo ufw allow 80/tcp comment 'NTracking'
-sudo chmod -R 757 /var/www
+sudo chmod -R 757 /var/www     #why 757?
 mkdir /var/www/ntracking
 cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
 sudo tee /etc/nginx/sites-enabled/default 2>&1 > /dev/null <<EOF
