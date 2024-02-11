@@ -55,13 +55,12 @@ python3 -m venv $HOME/.local/share/ntracking/RPvenv
 source $HOME/.local/share/ntracking/RPvenv/bin/activate
 
 ##unsure what this next line if for
-#!${HOME}/ntracking/RPvenv/bin/python
 
 # Display the version of pip
 clear
 echo "version of pip"
-sleep 3
 pip --version
+sleep 3
 
 # Install the 'pandas' and 'plotly.express' Python packages using pip3
 clear
@@ -91,8 +90,6 @@ echo "installing jinja2"
 >>>>>>> 8d806ad7 (Update setup.sh)
 pip3 install jinja2
 sleep 2
-
-#!/usr/bin/env bash
 
 ######################## install vnstat
 clear
