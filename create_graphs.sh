@@ -11,3 +11,6 @@ python3 ./all_graphs.py
 
 sleep 1
 python3 ./node_info.py
+
+sleep 1
+python3 ./mtracking.py
