@@ -23,8 +23,13 @@ then select install NTracking master
 
 the script will
 
-clone the NTracking folder from git hub to ```~/.local/share/ntracking```
-add this new folder to the path so you can execute scripts in it from anywhere
+clone the NTracking folder from git hub to 
+
+```
+~/.local/share/ntracking
+```
+
+add this new folder to the path so you can execute scripts in it from anywhere on the system
 open port 80 on the fire wall
 setup nginx web server to host your files NTracking site on port 80
 create a folder in /var/www/ntracking to hold the published site
