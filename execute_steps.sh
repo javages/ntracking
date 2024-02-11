@@ -36,9 +36,6 @@ echo "Generating graphs..."
 $HOME/.local/share/ntracking/create_graphs.sh
 echo "Graphs generated."
 
-#mtracking generate graphs
-python3 $HOME/.local/share/ntracking/mtracking.py
-
 # Navigate to the nginx folder
 echo "Navigating to nginx directory..."
 cd /var/www/ntracking
