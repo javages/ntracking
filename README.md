@@ -61,10 +61,10 @@ then create a config file on the master
 ```nano ~/.ssh/config```
 paste in
 
-```"Host s01
-    HostName <ip address>
-    User <username>
-    Port <port>"```
+```Host s01\n
+    HostName <ip address>\n
+    User <username>\n
+    Port <port>```
 
 then test it by doing ```ssh s01``` on the master
 
