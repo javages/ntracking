@@ -14,9 +14,11 @@ Track Safe Network nodes.
 
 run the script direct from git hub
 
-```bash <(curl -s https://raw.githubusercontent.com/safenetforum-community/ntracking/main/maid.sh)```
-go to the bottom option on first menu select setup NTracking and Vdash
+```
+bash <(curl -s https://raw.githubusercontent.com/safenetforum-community/ntracking/main/maid.sh)
+```
 
+go to the bottom option on first menu select setup NTracking and Vdash
 then select install NTracking master
 
 the script will
