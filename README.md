@@ -12,72 +12,62 @@ Track Safe Network nodes.
 
 ## Setup
 
-- These instructions assume that ntracking has been copied to `~/ntracking`
+run the script direct from git hub
 
-- Ensure the script is executable:
+bash <(curl -s https://raw.githubusercontent.com/safenetforum-community/ntracking/main/maid.sh)
+go to the bottom option on first menu select setup NTracking and Vdash
 
-  ```bash
-  chmod +x setup.sh
+then select install NTracking master
 
-  ```
+the script will
 
-- Execute the script
+clone the NTracking folder from git hub to ~/.local/share/ntracking
+add this new folder to the path so you can execute scripts in it from anywhere
+open port 80 on the fire wall
+setup nginx web server to host your files NTracking site on port 80
+create a folder in /var/www/ntracking to hold the published site
+create cron jobs in the folder /etc/cron.d each ntracking job starts with ntracking in its name
+to access the NTracking site from inside your local lan just enter the IP address of that pc into a web browser and it should display the NTracking website. if you are outside your own lan set up a port forward on port 80 to the NTracking master pc and use your router’s ip address.
 
- ```bash
-  ./setup.sh
+a folder will be created at ~/.local/share/local_machine to this folder will be added
 
-  ```
+bandwidth usage on the hour
+node statistics every 20 min
+a node register y for there numbering
+at 10 past the hour the cron job execute_steps script will be run which will copy the log files to the NTracking folder and generate the graphs and publish them to the nginx folder.
 
-> **Note**: This script will install a virtual environment using venv. This helps to avoid potential conflicts between packages and ensures a clean, isolated environment for your project. If venv is not on your system already, you will be prompted for your password to continue.
+Do no run the script if you are
 
-### 1. Script Placement & Permissions
+using port 80 for some thing
+have nginx installed hosting a site
+start and stop nodes using the script again or the maid.sh script that is installed localy as it clears out old logs between test nets.
+if nodes are already running it wont matter for the first run of NTracking
 
-This script will install to $(HOME)/ntracking; modify as needed.
-All necessary permissions and crontab entries are now set by the script.
+after install is complete close the terminal and reopen to update the path
 
-### 2. Cron Job Setup
+then you can run the scrip called maid.sh locally which is for starting stopping nodes etc
 
-- The setup script will add the following entry to your crontab with the option to add a second to also automate graph creation.
+## Multi system setups
 
-```bash
-  */10 * * * * /bin/bash $(HOME)/ntracking/resources.sh >> $(HOME)/ntracking/resources.log 2>&1
-  ```
-  
-This job will take a snapshot of your node/nodes resources and rewards balance every 10 minutes. The data will be appended to `resources.log`.
+to get the multi system working
+g
+en a key on the master ```ssh-keygen -t rsa```
 
-- To change this interval or data destination, open the crontab for editing:
+then copy the public key from the master key pair into the slave authorised keys
 
-  ```bash
-  crontab -e
+nano ~/.ssh/authorized_keys
+then create a config file on the master
 
-  Note: Don't forget to comment out or remove this cron job if you no longer need it (in between tests), as it will run indefinitely otherwise.
-  Also remember to remove the resources.log file between runs!  ##TODO   cleanup script
+nano ~/.ssh/config
+paste in
 
-### 3. Graph Generation
+Host s01
+    HostName <ip address>
+    User <username>
+    Port <port>
+then test it by doing ssh s01
 
-- Once you have run for a few hours and have enough data, you can generate the graph.
-- Execute the script:
+if it works accept the public key by typing yes
 
-  ```bash
-  ./create_graphs.sh
-  ```
-
-### 4. View the Graphs ntracking.html
-
-- The resulting plots will be saved in the app directory at
-`~/ntracking/`.
-- The graphs are interactive: you can zoom in, select specific nodes, and more using most browsers.
-
-You can open the graphs directly or with ntracking.html.
-
-For ALL functionality of ntracking.html to work locally you will need to:
-`cd ntracking`
-`source /RPvenv/bin/activate`
-`python3 -m http.server`
-Open your browser and navigate to 
-`http://localhost:8000`
-Open `ntracking.html` from list of displayed files.
-This can be left open, it will refresh/update periodically if you chose to auto generate graphs. 
-
-To end the session return to your terminal and `Ctrl + C`
+then that’s it wait for some data and wait for 10 past the hour or run execute steps manually for a forced update :slight_smile:
 
