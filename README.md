@@ -49,25 +49,28 @@ then you can run the scrip called maid.sh locally which is for starting stopping
 
 ## Multi system setups
 
-to get the multi system working
-g
-en a key on the master ```ssh-keygen -t rsa```
+to get the multi system set up's working
+run install NTracking slave on the slave system
+
+generate a key pair on the master system ```ssh-keygen -t rsa```
 
 then copy the public key from the master key pair into the slave authorised keys
 
-nano ~/.ssh/authorized_keys
+```nano ~/.ssh/authorized_keys```
 then create a config file on the master
-
-nano ~/.ssh/config
+```nano ~/.ssh/config```
 paste in
 
-Host s01
+```Host s01
     HostName <ip address>
     User <username>
-    Port <port>
-then test it by doing ssh s01
+    Port <port>```
+
+then test it by doing ```ssh s01``` on the master
 
 if it works accept the public key by typing yes
 
-then that’s it wait for some data and wait for 10 past the hour or run execute steps manually for a forced update :slight_smile:
+that’s it wait for some data and wait for 10 past the hour or run execute steps manually for a forced update.
+
+to add extra systems up to 30 at present add the details for each machine in ```nano ~/.ssh/config``` using the same name format ie ```s02``` for machine 2
 
