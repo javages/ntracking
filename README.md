@@ -66,10 +66,11 @@ HostName <ip address>
 User <username>
 Port <port>```
 
-then test it by doing ```ssh s01``` on the master
+then test it by trying to ssh in from the master
+```ssh s01```
 
 if it works accept the public key by typing yes
 
 that’s it wait for some data and wait for 10 past the hour or run execute steps manually for a forced update.
 
-to add extra systems up to 30 at present add the details for each machine in ```nano ~/.ssh/config``` using the same name format ie ```s02``` for machine 2
+to add extra systems up to 30 at present add the details for each machine in ```nano ~/.ssh/config``` using the same name format ie s02 for machine 2
