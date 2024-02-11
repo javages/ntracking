@@ -52,7 +52,7 @@ if nodes are already running it wont matter for the first run of NTracking
 
 after install is complete close the terminal and reopen to update the path
 
-then you can run the scrip called maid.sh locally which is for starting stopping nodes etc
+then you run the scrip called ```maid.sh``` locally which is for starting stopping nodes
 
 ## Multi system setups
 
