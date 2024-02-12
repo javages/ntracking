@@ -47,10 +47,12 @@ if [[ $? -eq 255 ]]; then
 exit 0
 fi
 
-if (whiptail --title "install direct without open metrics?" --yesno "Install node without compiling open metrics?" 8 78); then
-    OPEN_METRICS=0
-else
-    OPEN_METRICS=1
+OPEN_METRICS=$(whiptail --title "node instalation method" --radiolist \
+"Testnet Actions                              " 20 70 10 \
+"1" "Install node via safeup" ON \
+"2" "compile node from source with open metrics enabled" OFF 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
 fi
 
 
