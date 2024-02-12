@@ -48,9 +48,9 @@ exit 0
 fi
 
 OPEN_METRICS=$(whiptail --title "node instalation method" --radiolist \
-"Testnet Actions                              " 20 70 10 \
-"1" "Install node via safeup" ON \
-"2" "compile node from source with open metrics enabled" OFF 3>&1 1>&2 2>&3)
+"select node type                              " 20 70 10 \
+"0" "Install node via safeup" ON \
+"1" "compile node from source with open metrics enabled        " OFF 3>&1 1>&2 2>&3)
 if [[ $? -eq 255 ]]; then
 exit 0
 fi
