@@ -47,6 +47,13 @@ if [[ $? -eq 255 ]]; then
 exit 0
 fi
 
+if (whiptail --title "install direct without open metrics?" --yesno "Install node without compiling open metrics?" 8 78); then
+    OPEN_METRICS=0
+else
+    OPEN_METRICS=1
+fi
+
+
 ############################## count nodes directories and close fire wall
 PORTS_TO_CLOSE=$(ls $HOME/.local/share/safe/node | wc -l)
 sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/udp comment 'safe nodes'
@@ -70,8 +77,24 @@ sudo systemctl start vnstat.service
 
 sleep 2
 ############################## install client node and vdash
+
 safeup client --version "$CLIENT"
+
+#### Install node directley with safeup or compile node version with open metrics enabled. 
+
+if [[ $OPEN_METRICS == 0 ]]; then
+# local machine
 safeup node --version "$NODE"
+else
+#remote machine
+cd
+wget https://github.com/maidsafe/safe_network/archive/refs/tags/sn_node-v$NODE.zip && unzip sn_node-v$NODE.zip && rm sn_node-v$NODE.zip
+cd safe_network-sn_node-v$NODE
+cargo build --release --features=local-discovery,open-metrics
+cp ./target/release/safenode ~/.local/bin
+rm -rf ~/safe_network-sn_node-v$NODE
+fi
+
 cargo install vdash
 ############################## open ports 
 sudo ufw allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$NUMBER_NODES-1))/udp comment 'safe nodes'
