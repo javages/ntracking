@@ -94,7 +94,7 @@ wget https://github.com/maidsafe/safe_network/archive/refs/tags/sn_node-v$NODE.z
 cd safe_network-sn_node-v$NODE
 cargo build --release --features=local-discovery,open-metrics
 cp ./target/release/safenode ~/.local/bin
-rm -rf ~/safe_network-sn_node-v$NODE
+rm -rf $HOME/safe_network-sn_node-v$NODE
 fi
 
 cargo install vdash
