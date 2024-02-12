@@ -8,7 +8,8 @@ FAUCET=178.128.166.148:8000
 NODE_PORT_FIRST=4700
 NUMBER_NODES=30
 NUMBER_COINS=1
-NODE_START_DELAY=0
+DELAY_BETWEEN_NODES=11
+NODE_START_TIME=0
 
 export NEWT_COLORS='
 window=,white
@@ -102,11 +103,16 @@ cargo install vdash
 sudo ufw allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$NUMBER_NODES-1))/udp comment 'safe nodes'
 sleep 2
 ############################## start nodes
+DELAY_BETWEEN_NODES=$(whiptail --title "Delay between starting nodes in seconds" --inputbox "\nEnter delay between nodes?" 8 40 $DELAY_BETWEEN_NODES 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
+
 for (( c=$NODE_PORT_FIRST; c<=$(($NODE_PORT_FIRST+$NUMBER_NODES-1)); c++ ))
 do 
    sleep $NODE_START_DELAY && safenode --port $c --max_log_files 10 --max_archived_log_files 0 2>&1 > /dev/null & disown
-   echo "starting node on port $c with $NODE_START_DELAY second delay"
-   NODE_START_DELAY=$(($NODE_START_DELAY+11))
+   echo "starting node on port $c with $NODE_START_TIME second delay"
+   NODE_START_TIME=$(($NODE_START_TIME+$DELAY_BETWEEN_NODES))
 done
 sleep 2
 
