@@ -70,8 +70,7 @@ rm -rf $HOME/.local/share/local_machine
 rm -rf $HOME/.local/share/ntracking/logs
 rm $HOME/.local/share/ntracking/*.log
 
-mv $HOME/.local/share/ntracking/index.html.standby $HOME/.local/share/ntracking/index.html
-cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
+cp $HOME/.local/share/ntracking/index.html.standby /var/www/ntracking/index.html
 
 ## reset vnstat database
 sudo systemctl stop vnstat.service
@@ -148,7 +147,6 @@ sudo ufw delete allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$PORTS_TO_CLOSE-1))/u
 remove safe folder
 rm -rf $HOME/.local/share/safe
 
-mv $HOME/.local/share/ntracking/index.html $HOME/.local/share/ntracking/index.html.standby
 cp $HOME/.local/share/ntracking/commingsoon.html /var/www/ntracking/index.html
 
 rm -rf $HOME/.local/share/local_machine
