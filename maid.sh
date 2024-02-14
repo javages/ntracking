@@ -162,7 +162,7 @@ sudo apt update -y
 clear
 echo "upgrade system ?"
 sudo apt upgrade
-sudo reboot
+#sudo reboot
 
 ######################################################################################################################## Get Test Coins
 elif [[ "$SELECTION" == "4" ]]; then
