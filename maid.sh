@@ -109,7 +109,7 @@ sleep 2
 
 for (( c=$NODE_PORT_FIRST; c<=$(($NODE_PORT_FIRST+$NUMBER_NODES-1)); c++ ))
 do 
-   sleep $NODE_START_DELAY && safenode --port $c --max_log_files 10 --max_archived_log_files 0 2>&1 > /dev/null & disown
+   sleep $NODE_START_TIME && safenode --port $c --max_log_files 10 --max_archived_log_files 0 2>&1 > /dev/null & disown
    echo "starting node on port $c with $NODE_START_TIME second delay"
    NODE_START_TIME=$(($NODE_START_TIME+$DELAY_BETWEEN_NODES))
 done
