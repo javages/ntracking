@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-CLIENT=0.89.49
-NODE=0.103.45
-FAUCET=178.128.166.148:8000
+CLIENT=0.89.65
+NODE=0.104.18
+FAUCET=64.227.32.230:8000
 
 # first node port can edited in menu later
 NODE_PORT_FIRST=4700
