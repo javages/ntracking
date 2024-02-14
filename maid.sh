@@ -56,6 +56,10 @@ if [[ $? -eq 255 ]]; then
 exit 0
 fi
 
+DELAY_BETWEEN_NODES=$(whiptail --title "Delay between starting nodes in seconds" --inputbox "\nEnter delay between nodes?" 8 40 $DELAY_BETWEEN_NODES 3>&1 1>&2 2>&3)
+if [[ $? -eq 255 ]]; then
+exit 0
+fi
 
 ############################## count nodes directories and close fire wall
 PORTS_TO_CLOSE=$(ls $HOME/.local/share/safe/node | wc -l)
@@ -102,10 +106,6 @@ cargo install vdash
 sudo ufw allow $NODE_PORT_FIRST:$(($NODE_PORT_FIRST+$NUMBER_NODES-1))/udp comment 'safe nodes'
 sleep 2
 ############################## start nodes
-DELAY_BETWEEN_NODES=$(whiptail --title "Delay between starting nodes in seconds" --inputbox "\nEnter delay between nodes?" 8 40 $DELAY_BETWEEN_NODES 3>&1 1>&2 2>&3)
-if [[ $? -eq 255 ]]; then
-exit 0
-fi
 
 for (( c=$NODE_PORT_FIRST; c<=$(($NODE_PORT_FIRST+$NUMBER_NODES-1)); c++ ))
 do 
