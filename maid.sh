@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CLIENT=0.89.65
+CLIENT=0.89.68
 NODE=0.104.21
 FAUCET=64.227.32.230:8000
 
