@@ -45,7 +45,7 @@ source $HOME/.bashrc
 clear
 echo "install venv"
 sleep 2
-sudo apt install python3.10-venv -y
+sudo apt install python3.11-venv -y
 
 # Set up a virtual environment (venv)
 clear
