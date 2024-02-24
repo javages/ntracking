@@ -1,10 +1,10 @@
+import os
+import warnings
+import glob
 import pandas as pd
 import numpy as np
 import plotly.express as px
 import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-import os
-import glob
 import warnings
 import re
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -68,15 +68,15 @@ def combined_extract_data(filenames):
             if "Global (UTC) Timestamp:" in lines[idx]:
                 timestamp = lines[idx].split(": ", 1)[1].strip()
                 entry_data = {"Global (UTC) Timestamp": timestamp}
-                
+               
                 idx += 1
                 while idx < len(lines) and "------------------------------------------" not in lines[idx]:
                     if ": " in lines[idx]:
                         key, raw_value = lines[idx].split(": ", 1)
-                        raw_value = raw_value.strip()  # Strip whitespace from the raw value
+                        raw_value = raw_value.strip()
 
                         if raw_value == "N/A":
-                            value = np.nan  # Set "N/A" values to numpy's NaN
+                            value = np.nan
                         elif key in formats:
                             value = convert_value(raw_value, formats[key])
                         else:
@@ -100,7 +100,7 @@ def combined_extract_data(filenames):
                 idx += 1
 
         all_data.extend(data)
-    
+
     # DataFrame for rewards_visualize and memory_visualize
     line_df = pd.DataFrame(all_data)
     line_df["Timestamp"] = pd.to_datetime(line_df["Global (UTC) Timestamp"], format='%a %b %d %H:%M:%S %Z %Y', errors='coerce')
