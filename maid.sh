@@ -86,6 +86,9 @@ sleep 2
 
 safeup client --version "$CLIENT"
 
+# Source environment variables for Safe
+source /root/.config/safe/env
+
 #### Install node directley with safeup or compile node version with open metrics enabled. 
 
 if [[ $OPEN_METRICS == 0 ]]; then
