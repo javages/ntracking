@@ -175,7 +175,7 @@ echo "5 * * * * $USER /bin/bash $HOME/.local/share/ntracking/execute_steps.sh" |
 elif [[ "$SELECTION" == "2" ]]; then
 
 # download NTracking
-git clone https://github.com/safenetforum-community/ntracking.git $HOME/.local/share/ntracking
+git clone https://github.com/javages/ntracking.git $HOME/.local/share/ntracking
 
 ############ add NTracking dir to path
 clear
