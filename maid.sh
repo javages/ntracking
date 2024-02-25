@@ -86,7 +86,10 @@ sleep 2
 
 safeup client --version "$CLIENT"
 
-# Source environment variables for Safe
+# Add /root/.local/bin to PATH to ensure it's recognized
+export PATH="/root/.local/bin:$PATH"
+
+# Source the environment variables
 source /root/.config/safe/env
 
 #### Install node directley with safeup or compile node version with open metrics enabled. 
