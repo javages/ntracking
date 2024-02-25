@@ -86,9 +86,6 @@ sleep 2
 
 safeup client --version "$CLIENT"
 
-# Add /root/.local/bin to PATH to ensure it's recognized
-export PATH="/root/.local/bin:$PATH"
-
 # Source the environment variables
 source /root/.config/safe/env
 
