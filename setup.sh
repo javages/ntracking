@@ -79,15 +79,10 @@ pip3 install matplotlib
 sleep 2
 
 clear
-<<<<<<< HEAD
 echo "jinja2"
-<<<<<<< HEAD
-=======
 sleep 3
->>>>>>> 38c57580 (Update setup.sh)
-=======
+
 echo "installing jinja2"
->>>>>>> 8d806ad7 (Update setup.sh)
 pip3 install jinja2
 sleep 2
 
