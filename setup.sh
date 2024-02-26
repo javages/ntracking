@@ -41,6 +41,10 @@ echo export PATH=$PATH:$HOME/.local/share/ntracking/ >> $HOME/.bashrc
 source $HOME/.bashrc
 
 ############ install pre requsites
+
+#install unzip for use with compiling from source
+sudo apt install unzip -y
+
 #Install venv
 clear
 echo "install venv"
