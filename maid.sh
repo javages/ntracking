@@ -99,7 +99,7 @@ else
 cd
 wget https://github.com/maidsafe/safe_network/archive/refs/tags/sn_node-v$NODE.zip && unzip sn_node-v$NODE.zip && rm sn_node-v$NODE.zip
 cd safe_network-sn_node-v$NODE
-cargo build --release --features=local-discovery,open-metrics
+cargo build --release --features=network-contacts,open-metrics
 cp ./target/release/safenode ~/.local/bin
 rm -rf $HOME/safe_network-sn_node-v$NODE
 fi
