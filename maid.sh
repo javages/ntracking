@@ -191,6 +191,6 @@ sudo reboot
 
 ############################################################################################################################################# setup NTracking & vdash
 elif [[ "$SELECTION" == "7" ]]; then
-bash <(curl -s https://raw.githubusercontent.com/safenetforum-community/ntracking/main/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/javages/ntracking/main/setup.sh)
 
 fi
