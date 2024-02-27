@@ -159,14 +159,6 @@ rm -rf $HOME/local.share/ntracking/logs
 
 sleep 2
 
-################# update and restart
-rustup update
-sudo apt update -y
-clear
-echo "upgrade system ?"
-sudo apt upgrade
-#sudo reboot
-
 ######################################################################################################################## Get Test Coins
 elif [[ "$SELECTION" == "4" ]]; then
 NUMBER_COINS=$(whiptail --title "Number of Coins" --inputbox "\nEnter number of deposits 100 each" 8 40 $NUMBER_COINS 3>&1 1>&2 2>&3)
