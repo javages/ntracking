@@ -2,7 +2,7 @@
 
 # comunity or josh master coment out to select corect repository
 
-#REPOSITORY="https://raw.githubusercontent.com/javages/ntracking/main/"
+#REPOSITORY="https://github.com/javages/ntracking.git"
 REPOSITORY="https://github.com/safenetforum-community/ntracking.git"
 
 
