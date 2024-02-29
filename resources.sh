@@ -1,9 +1,12 @@
 #!/bin/bash
 
+export PATH=$PATH:$HOME/.local/bin
+
 registry_file="node_registry.conf"
 base_dirs=("${HOME}/.local/share/safe/node" "/var/safenode-manager/services")
 
 declare -A dir_pid
+declare -A dir_peer_ids
 declare -A node_numbers
 declare -A dir_creation_times
 
@@ -28,7 +31,7 @@ for number in "${node_numbers[@]}"; do
   ((number > max_number)) && max_number=$number
 done
 
-# Discover nodes and capture their details
+# Discover nodes, capture their details, and conditionally fetch Peer IDs
 for base_dir in "${base_dirs[@]}"; do
     for dir in "$base_dir"/*; do
         if [[ -f "$dir/safenode.pid" ]]; then
@@ -38,6 +41,12 @@ for base_dir in "${base_dirs[@]}"; do
 
             # Assign a new number to unregistered nodes
             [[ -z ${node_numbers["$dir_name"]} ]] && node_numbers["$dir_name"]=$((++max_number))
+            
+            if [[ "$base_dir" == "/var/safenode-manager/services" ]]; then
+                # Fetch the Peer ID by parsing `safenode-manager status --details`
+                peer_id=$(safenode-manager status --details | grep -A 5 "$dir_name - RUNNING" | grep "Peer ID:" | awk '{print $3}')
+                dir_peer_ids["$dir_name"]="$peer_id"
+            fi
         fi
     done
 done
@@ -50,6 +59,9 @@ for dir_name in "${sorted_dirs[@]}"; do
   echo "Number: ${node_numbers[$dir_name]}"
   echo "Node: $dir_name"
   echo "PID: ${dir_pid[$dir_name]}"
+if [[ -n "${dir_peer_ids[$dir_name]}" ]]; then
+  echo "Peer ID: ${dir_peer_ids[$dir_name]}"
+fi
 
 # Retrieve process information
 process_info=$(ps -o rss,%cpu -p "${dir_pid[$dir_name]}" | awk 'NR>1')

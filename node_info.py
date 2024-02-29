@@ -15,6 +15,8 @@ def parse_log(file_path):
     reward_pattern = r"Rewards balance: ([\d.]+)"
     timestamp_pattern = r"Global \(UTC\) Timestamp: (.+?)\n"
     status_pattern = r"Status: (\w+)"
+    peer_id_pattern = r"Peer ID: ([\w\d]+)"
+
 
     parsed_entries = []
     dead_nodes = []  # List to store killed nodes
@@ -29,6 +31,9 @@ def parse_log(file_path):
         reward_match = re.search(reward_pattern, entry)
         timestamp_match = re.search(timestamp_pattern, entry)
         status_match = re.search(status_pattern, entry)
+        peer_id_match = re.search(peer_id_pattern, entry)
+        peer_id = peer_id_match.group(1) if peer_id_match else None
+
         
         if all([number_match, node_match, pid_match, reward_match, timestamp_match, status_match]):
             timestamp = datetime.strptime(timestamp_match.group(1), '%a %b %d %H:%M:%S UTC %Y')
@@ -39,8 +44,11 @@ def parse_log(file_path):
                 'Reward': float(reward_match.group(1)),
                 'Timestamp': timestamp,
                 'Status': status_match.group(1),
-                'LogNumber': log_number  # Store the log number for this entry
+                'LogNumber': log_number
             }
+            if peer_id:
+                parsed_entry['PeerID'] = peer_id
+
             parsed_entries.append(parsed_entry)
             
             identifier = (parsed_entry['Number'], parsed_entry['Node'], parsed_entry['PID'])
@@ -73,17 +81,18 @@ def main():
     killed_nodes = set(entry['Node'] for entry in unique_entries.values() if entry['Status'] == 'killed')
     
     with open("node_info.txt", "w") as outfile:
-        outfile.write("= Stats =\n")
+        outfile.write("= ntracking =\n")
         outfile.write(f"Rewards: {total_reward:.8f}\n")
         outfile.write(f"Running: {len(running_nodes)}\n")
-        outfile.write(f"Killed: {len(killed_nodes)}\n\n")
-        outfile.write("↓ more info ↓\n\n\n")
+        outfile.write(f"Killed: {len(killed_nodes)}\n\n\n")
 
         if all_dead_nodes:
             outfile.write("=== Killed Nodes Details ===\n")
             for node in all_dead_nodes:
                 outfile.write(f"Number: {node['LogNumber']}:{node['Number']}\n")
                 outfile.write(f"Node: {node['Node']}\n")
+                if 'PeerID' in node:
+                    outfile.write(f"Peer ID: {node['PeerID']}\n")
                 outfile.write(f"PID: {node['PID']}\n")
                 outfile.write(f"Status: {node['Status']}\n")
                 outfile.write(f"Timestamp: {node['Timestamp'].strftime('%a %b %d %H:%M:%S UTC %Y')}\n")
@@ -95,6 +104,8 @@ def main():
         for entry in sorted_entries:
             outfile.write(f"Number: {entry['LogNumber']}:{entry['Number']}\n")
             outfile.write(f"Node: {entry['Node']}\n")
+            if 'PeerID' in entry:
+                outfile.write(f"Peer ID: {entry['PeerID']}\n")
             outfile.write(f"PID: {entry['PID']}\n")
             outfile.write(f"Rewards balance: {entry['Reward']:.8f}\n")
             outfile.write("---------\n")
