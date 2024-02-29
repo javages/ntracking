@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# javages test
+
 CLIENT=0.89.68
 NODE=0.104.32
 FAUCET=64.227.32.230:8000
