@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# javages test
+
 export NEWT_COLORS='
 window=,white
 border=black,white
