@@ -4,6 +4,13 @@ CLIENT=0.89.68
 NODE=0.104.32
 FAUCET=64.227.32.230:8000
 
+# comunity or josh master coment out to select corect repository
+
+#REPOSITORY="https://raw.githubusercontent.com/javages/ntracking/main/"
+REPOSITORY="https://raw.githubusercontent.com/safenetforum-community/ntracking/main/"
+
+
+
 # first node port can edited in menu later
 NODE_PORT_FIRST=4700
 NUMBER_NODES=30
@@ -183,6 +190,6 @@ sudo reboot
 
 ############################################################################################################################################# setup NTracking & vdash
 elif [[ "$SELECTION" == "7" ]]; then
-bash <(curl -s https://raw.githubusercontent.com/javages/ntracking/main/setup.sh)
+bash <(curl -s "$REPOSITORY"setup.sh)
 
 fi

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# comunity or josh master coment out to select corect repository
+
+#REPOSITORY="https://github.com/javages/ntracking.git"
+REPOSITORY="https://github.com/safenetforum-community/ntracking.git"
+
+
 export NEWT_COLORS='
 window=,white
 border=black,white
@@ -29,9 +35,14 @@ if [[ "$SELECTION" == "1" ]]; then
 sudo apt update
 ############ Download NTracking
 clear
+
 echo "downloading NTracking from github"
+echo "Removed old NTracking install"
+rm -rf $HOME/.local/share/ntracking
 sleep 2
-git clone https://github.com/javages/ntracking.git $HOME/.local/share/ntracking
+
+#clone ntracking to local drive
+git clone $REPOSITORY $HOME/.local/share/ntracking
 
 ############ add NTracking dir to path
 clear
@@ -173,8 +184,13 @@ echo "5 * * * * $USER /bin/bash $HOME/.local/share/ntracking/execute_steps.sh" |
 ######################################################################################################################## Setup NTracking Slave
 elif [[ "$SELECTION" == "2" ]]; then
 
-# download NTracking
-git clone https://github.com/javages/ntracking.git $HOME/.local/share/ntracking
+echo "downloading NTracking from github"
+echo "Removed old NTracking install"
+rm -rf $HOME/.local/share/ntracking
+sleep 2
+
+#clone ntracking to local drive
+git clone $REPOSITORY $HOME/.local/share/ntracking
 
 ############ add NTracking dir to path
 clear
