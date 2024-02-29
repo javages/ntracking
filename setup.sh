@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# comunity or josh master coment out to select corect repository
+
+#REPOSITORY="https://raw.githubusercontent.com/javages/ntracking/main/"
+REPOSITORY="https://github.com/safenetforum-community/ntracking.git"
+
+
 export NEWT_COLORS='
 window=,white
 border=black,white
@@ -36,7 +42,7 @@ rm -rf $HOME/.local/share/ntracking
 sleep 2
 
 #clone ntracking to local drive
-git clone https://github.com/safenetforum-community/ntracking.git $HOME/.local/share/ntracking
+git clone $REPOSITORY $HOME/.local/share/ntracking
 
 ############ add NTracking dir to path
 clear
@@ -184,7 +190,7 @@ rm -rf $HOME/.local/share/ntracking
 sleep 2
 
 #clone ntracking to local drive
-git clone https://github.com/safenetforum-community/ntracking.git $HOME/.local/share/ntracking
+git clone $REPOSITORY $HOME/.local/share/ntracking
 
 ############ add NTracking dir to path
 clear
