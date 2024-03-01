@@ -6,8 +6,8 @@ FAUCET=64.227.32.230:8000
 
 # comunity or josh master coment out to select corect repository
 
-#REPOSITORY="https://raw.githubusercontent.com/javages/ntracking/main/"
-REPOSITORY="https://raw.githubusercontent.com/safenetforum-community/ntracking/main/"
+REPOSITORY="https://raw.githubusercontent.com/javages/ntracking/main/"
+#REPOSITORY="https://raw.githubusercontent.com/safenetforum-community/ntracking/main/"
 
 
 
