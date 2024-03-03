@@ -2,7 +2,7 @@
 
 export PATH=$PATH:$HOME/.local/bin
 
-registry_file="node_registry.conf"
+registry_file="$HOME/.local/share/local_machine/node_registry.conf"
 base_dirs=("${HOME}/.local/share/safe/node" "/var/safenode-manager/services")
 
 declare -A dir_pid
