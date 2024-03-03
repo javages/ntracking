@@ -57,23 +57,37 @@ source $HOME/.bashrc
 sudo apt install unzip -y
 
 #Install venv
+# Function to extract major and minor version from python version string
+get_python_version() {
+    python_version_output=$(python3 -V)
+    if [[ $python_version_output =~ Python\ ([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
+        echo "${BASH_REMATCH[1]}.${BASH_REMATCH[2]}"
+    else
+        echo "Unknown"
+    fi
+}
 clear
-echo "install venv"
+
+# Check Python version
+echo "Checking Python version..."
+python_version=$(get_python_version)
+echo "Detected Python version: $python_version"
+
+# Install venv for detected Python version
+echo "Installing venv for Python $python_version..."
 sleep 2
-sudo apt install python3.11-venv -y
+sudo apt install python${python_version}-venv -y
 
 # Set up a virtual environment (venv)
 clear
-echo "setup virtual enviroment"
+echo "Setting up virtual environment..."
 sleep 3
 python3 -m venv $HOME/.local/share/ntracking/RPvenv
 source $HOME/.local/share/ntracking/RPvenv/bin/activate
 
-##unsure what this next line if for
-
 # Display the version of pip
 clear
-echo "version of pip"
+echo "Pip version:"
 pip --version
 sleep 3
 
